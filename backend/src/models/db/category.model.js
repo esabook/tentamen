@@ -1,0 +1,3 @@
+/**
+ * contoh: kelas, mapel
+ */
