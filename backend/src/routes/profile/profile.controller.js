@@ -1,4 +1,4 @@
-import User from "../../models/db/user.model.js";
+import Account from "../../models/db/account.model.js";
 import { message500 } from "../../models/response/message500.js";
 
 export const profileUpdate = async (req, res) => {
@@ -6,7 +6,7 @@ export const profileUpdate = async (req, res) => {
     const {} = req.user;
     const { full_name, profile_pic } = req.body;
 
-    const user = await User.findOne({ email: email });
+    const account = await Account.findOne({ email: email });
 
     if (!full_name) {
       return res.status(400).json({
@@ -14,19 +14,19 @@ export const profileUpdate = async (req, res) => {
       });
     }
 
-    // Update user profile
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    // Update account profile
+    if (!account) {
+      return res.status(404).json({ message: "Account not found" });
     }
 
-    user.full_name = full_name;
-    if (profile_pic) user.profile_pic = profile_pic;
+    account.full_name = full_name;
+    if (profile_pic) account.profile_pic = profile_pic;
 
-    await user.save();
+    await account.save();
 
     res.json({
       message: "Profile updated successfully",
-      data: { full_name: user.full_name, profile_pic: user.profile_pic },
+      data: { full_name: account.full_name, profile_pic: account.profile_pic },
     });
   } catch (error) {
     console.log("Error in profile.controller", error);
@@ -37,9 +37,9 @@ export const profileUpdate = async (req, res) => {
 export const profileDelete = async (req, res) => {
   try {
     const { email } = req.user;
-    const user = await User.findOneAndDelete({ email });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    const account = await Account.findOneAndDelete({ email });
+    if (!account) {
+      return res.status(404).json({ message: "Account not found" });
     }
     res.json({ message: "Profile deleted successfully" });
   } catch (error) {
@@ -51,13 +51,13 @@ export const profileDelete = async (req, res) => {
 export const profileDeactivate = async (req, res) => {
   try {
     const { email } = req.user;
-    const user = await User.findOneAndUpdate(
+    const account = await Account.findOneAndUpdate(
       { email },
       { $set: { isActive: false } },
       { new: true }
     );
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    if (!account) {
+      return res.status(404).json({ message: "Account not found" });
     }
     res.json({ message: "Profile deactivated successfully" });
   } catch (error) {

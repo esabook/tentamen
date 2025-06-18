@@ -17,7 +17,7 @@ import ujianRoutes from "./ujian/ujian.route.js"
  *   - name: Auth
  *     description: Authentication endpoints
  *   - name: Profile
- *     description: User profile endpoints
+ *     description: Account profile endpoints
  *   - name: Role
  *     description: Role management endpoints
  *   - name: Permission

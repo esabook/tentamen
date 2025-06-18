@@ -7,11 +7,11 @@ const ujianSchema = new mongoose.Schema({
   },
   peserta: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // user dengan role siswa
+    ref: "Account", // account dengan role siswa
   }],
   pengawas: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // user dengan role guru pengawas
+    ref: "Account", // account dengan role guru pengawas
     required: true
   },
   soal_group: {

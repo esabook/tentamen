@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 /**
  * contoh: a::admin, b::guru, c::guru, d::murid
  */
-const userRoleSchema = new mongoose.Schema({
-    user_id: {
+const accountRoleSchema = new mongoose.Schema({
+    account_id: {
         type: mongoose.Types.ObjectId,
         required: true,
         unique: true,
-        ref: "User"
+        ref: "Account"
     },
     role_id: {
         type: mongoose.Types.ObjectId,
@@ -17,6 +17,6 @@ const userRoleSchema = new mongoose.Schema({
     }
 });
 
-const UserRole = mongoose.model("UserRole", userRoleSchema);
+const AccountRole = mongoose.model("AccountRole", accountRoleSchema);
 
-export default UserRole;
+export default AccountRole;

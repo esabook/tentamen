@@ -1,5 +1,7 @@
 import Ujian from '../../models/db/ujian.model.js';
 import mongoose from 'mongoose';
+import Answer from '../../models/db/answer.model.js';
+import Account from '../../models/db/account.model.js';
 
 // GET /all?page=1&size=10
 export const getAllUjian = async (req, res) => {
@@ -91,5 +93,62 @@ export const getUjianById = async (req, res) => {
     res.json({ data: ujian });
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch ujian', error: err.message });
+  }
+};
+
+// GET /:id/leaderboard (live leaderboard 10 skor tertinggi)
+export const liveLeaderboard = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json({ message: 'Invalid ujian id' });
+    // Ambil peserta dari ujian
+    const ujian = await Ujian.findById(id).select('peserta');
+    if (!ujian) return res.status(404).json({ message: 'Ujian not found' });
+
+    // Aggregate skor total per peserta (account_id) untuk ujian ini
+    if (!ujian.peserta || ujian.peserta.length === 0) {
+      return res.json({ leaderboard: [] }); // Tidak ada peserta
+    }
+    // Pastikan soal_group sesuai dengan ujian jika diperlukan
+    // const soalGroupId = ujian.soal_group ? mongoose.Types.ObjectId(ujian.soal_group) : null;
+    // Ambil leaderboard top 10 peserta berdasarkan skor
+    // Jika soal_group diperlukan, tambahkan filter di $match
+    // $match: { soal_group: soalGroupId } jika perlu
+    const leaderboard = await Answer.aggregate([
+      {
+        $match: {
+          account_id: { $in: ujian.peserta },
+          //soal_group: mongoose.Types.ObjectId(id) // Pastikan soal_group sesuai dengan ujian
+        }
+      },
+      {
+        $group: {
+          _id: "$account_id",
+          totalScore: { $sum: { $ifNull: ["$score", 0] } }
+        }
+      },
+      { $sort: { totalScore: -1 } },
+      { $limit: 10 },
+      {
+        $lookup: {
+          from: "accounts",
+          localField: "_id",
+          foreignField: "_id",
+          as: "account"
+        }
+      },
+      { $unwind: "$account" },
+      {
+        $project: {
+          _id: 0,
+          account_id: "$account._id",
+          full_name: "$account.full_name",
+          totalScore: 1
+        }
+      }
+    ]);
+    res.json({ leaderboard });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch leaderboard', error: err.message });
   }
 };

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Human from "./human.model.js"
 
-const userSchema = new mongoose.Schema({
+const accountSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
@@ -22,12 +22,12 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    user_detail: {
+    account_detail: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Human",
     }
 });
 
-const User = mongoose.model("User", userSchema);
+const Account = mongoose.model("Account", accountSchema);
 
-export default User;
+export default Account;

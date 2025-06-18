@@ -1,6 +1,6 @@
 import { message500 } from "../../models/response/message500.js";
 import { generateJwtToken } from "../../libs/util.js";
-import User from "../../models/db/user.model.js";
+import Account from "../../models/db/account.model.js";
 import bcrypt from "bcryptjs";
 
 export const signUp = async (req, res) => {
@@ -19,27 +19,27 @@ export const signUp = async (req, res) => {
             });
         }
 
-        const user = await User.findOne({ email: email });
-        if (user) return res.status(400).json({
+        const account = await Account.findOne({ email: email });
+        if (account) return res.status(400).json({
             message: "Email already registered."
         });
 
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password, salt);
-        const newUser = new User({
+        const newAccount = new Account({
             full_name: full_name,
             email: email,
             password: hashPassword
         });
 
-        if (newUser) {
-            generateJwtToken(newUser._id, res);
-            await newUser.save();
+        if (newAccount) {
+            generateJwtToken(newAccount._id, res);
+            await newAccount.save();
 
-            return res.status(201).json(newUser.toJSON());
+            return res.status(201).json(newAccount.toJSON());
         } else {
             return res.status(400).json({
-                message: "Invalid user data."
+                message: "Invalid account data."
             });
         }
 
@@ -53,15 +53,15 @@ export const signUp = async (req, res) => {
 export const signIn = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await User.findOne({ email: email });
+        const account = await Account.findOne({ email: email });
 
-        if (!user) {
+        if (!account) {
             return res.status(400).json({
                 message: "Invalid credentials"
             });
         }
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        const isPasswordValid = await bcrypt.compare(password, account.password);
         if (!isPasswordValid) {
             return res.status(400).json({
                 message: "Invalid credentials"
@@ -69,13 +69,13 @@ export const signIn = async (req, res) => {
         }
 
 
-        var token = generateJwtToken(user._id, res);
+        var token = generateJwtToken(account._id, res);
 
         res.status(200).json({
             jwt: token,
-            full_name: user.full_name,
-            email: user.email,
-            profilePic: user.profilePic
+            full_name: account.full_name,
+            email: account.email,
+            profilePic: account.profilePic
         });
 
     } catch (error) {

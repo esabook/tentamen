@@ -1,16 +1,16 @@
 /**
  * @swagger
  * tags:
- *   name: Profile
- *   description: User profile endpoints
+ *   name: AccountProfile
+ *   description: Account profile endpoints
  */
 
 /**
  * @swagger
  * /profile/update:
  *   post:
- *     summary: Update user profile
- *     tags: [Profile]
+ *     summary: Update account profile
+ *     tags: [AccountProfile]
  *     security:
  *       - cookieAuth: []
  *     requestBody:
@@ -30,7 +30,7 @@
  *       400:
  *         description: Invalid input
  *       404:
- *         description: User not found
+ *         description: Account not found
  *       500:
  *         description: Server error
  */
@@ -39,15 +39,15 @@
  * @swagger
  * /profile/delete:
  *   post:
- *     summary: Delete user profile
- *     tags: [Profile]
+ *     summary: Delete account profile
+ *     tags: [AccountProfile]
  *     security:
  *       - cookieAuth: []
  *     responses:
  *       200:
  *         description: Profile deleted successfully
  *       404:
- *         description: User not found
+ *         description: Account not found
  *       500:
  *         description: Server error
  */
@@ -56,15 +56,15 @@
  * @swagger
  * /profile/deactivate:
  *   post:
- *     summary: Deactivate user profile (set isActive to false)
- *     tags: [Profile]
+ *     summary: Deactivate account profile (set isActive to false)
+ *     tags: [AccountProfile]
  *     security:
  *       - cookieAuth: []
  *     responses:
  *       200:
  *         description: Profile deactivated successfully
  *       404:
- *         description: User not found
+ *         description: Account not found
  *       500:
  *         description: Server error
  */

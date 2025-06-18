@@ -62,14 +62,14 @@ export const deleteRole = async (req, res) => {
       return res.status(400).json({ message: "Invalid _id format" });
     }
 
-    // Cek apakah role masih digunakan oleh userRole
-    const userRoleCount = await import(
-      "../../models/db/userRole.model.js"
+    // Cek apakah role masih digunakan oleh accountRole
+    const accountRoleCount = await import(
+      "../../models/db/accountRole.model.js"
     ).then((m) => m.default.countDocuments({ roleId: _id }));
 
-    if (userRoleCount > 0) {
+    if (accountRoleCount > 0) {
       return res.status(400).json({
-        message: "Role masih digunakan oleh userRole, tidak dapat dihapus.",
+        message: "Role masih digunakan oleh accountRole, tidak dapat dihapus.",
       });
     }
     

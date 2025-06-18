@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../../models/db/user.model.js";
+import Account from "../../models/db/account.model.js";
 import { message500 } from "../../models/response/message500.js";
 
 
@@ -22,7 +22,7 @@ export const authProtect = async (req, res, next) => {
             });
         }
 
-        const user = await User.findById(decoded.userId).select("-password");
+        const user = await Account.findById(decoded.userId).select("-password");
         if (!user) {
              return res.status(404).json({
                 message: "Active user not found."

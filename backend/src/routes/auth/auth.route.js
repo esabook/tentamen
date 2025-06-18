@@ -11,7 +11,7 @@
  * @swagger
  * /auth/signup:
  *   post:
- *     summary: Register a new user
+ *     summary: Register a new account
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -32,7 +32,7 @@
  *                 type: string
  *     responses:
  *       201:
- *         description: User registered
+ *         description: Account registered
  *       400:
  *         description: Invalid input or already registered
  *       500:
@@ -72,7 +72,7 @@
  * @swagger
  * /auth/logout:
  *   get:
- *     summary: Logout user (clear JWT cookie)
+ *     summary: Logout account (clear JWT cookie)
  *     tags: [Auth]
  *     responses:
  *       200:
@@ -84,8 +84,8 @@ import { signOut, signUp, signIn } from './auth.controller.js';
 
 const router = express.Router();
 
-router.post("/signup", signUp); // Register new user
-router.post("/signin", signIn); // Login user
-router.get("/logout", signOut); // Logout user
+router.post("/signup", signUp); // Register new account
+router.post("/signin", signIn); // Login account
+router.get("/logout", signOut); // Logout account
 
 export default router;

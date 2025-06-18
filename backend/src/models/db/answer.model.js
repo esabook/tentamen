@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const answerSchema = new mongoose.Schema({
-  user_id: {
+  account_id: {
     type: mongoose.Types.ObjectId,
-    ref: "User", // referensi ke model User
-    index: true, // untuk mempercepat query berdasarkan user_id
+    ref: "Account", // referensi ke model Account
+    index: true, // untuk mempercepat query berdasarkan account_id
   },
 
   soal_id: {
@@ -31,7 +31,5 @@ const answerSchema = new mongoose.Schema({
 
 });
 
-
 const Answer = mongoose.model("Answer", answerSchema);
-
 export default Answer;

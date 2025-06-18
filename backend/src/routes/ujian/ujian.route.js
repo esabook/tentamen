@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllUjian, addUjian, updateUjian, deleteUjian, startUjian, getUjianById } from "./ujian.controller.js";
+import { getAllUjian, addUjian, updateUjian, deleteUjian, startUjian, getUjianById, liveLeaderboard } from "./ujian.controller.js";
 import { authProtect } from "../auth/auth.middleware.js";
 
 const router = express.Router();
@@ -195,6 +195,30 @@ const router = express.Router();
  *         description: Server error
  */
 
+/**
+ * @swagger
+ * /ujian/{id}/leaderboard:
+ *   get:
+ *     summary: Get live leaderboard (top 10 peserta skor tertinggi) untuk ujian
+ *     tags: [Ujian]
+ *     security:
+ *       - cookieAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Ujian ID
+ *     responses:
+ *       200:
+ *         description: Top 10 leaderboard
+ *       404:
+ *         description: Ujian not found
+ *       500:
+ *         description: Server error
+ */
+
 // Endpoint
 router.get("/all", authProtect, getAllUjian);
 router.post("/add", authProtect, addUjian);
@@ -202,5 +226,6 @@ router.post("/update", authProtect, updateUjian);
 router.post("/delete", authProtect, deleteUjian);
 router.post("/start/:id", authProtect, startUjian);
 router.get("/:id", authProtect, getUjianById);
+router.get('/:id/leaderboard', authProtect, liveLeaderboard);
 
 export default router;

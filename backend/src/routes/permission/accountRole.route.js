@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllUserRoles, addUserRole, updateUserRole, deleteUserRole } from "./userRole.controller.js";
+import { getAllAccountRoles, addAccountRole, updateAccountRole, deleteAccountRole } from "./accountRole.controller.js";
 import { authProtect } from "../auth/auth.middleware.js";
 
 const router = express.Router();
@@ -7,16 +7,16 @@ const router = express.Router();
 /**
  * @swagger
  * tags:
- *   name: UserRole
- *   description: User-role assignment endpoints
+ *   name: AccountRole
+ *   description: Account-role assignment endpoints
  */
 
 /**
  * @swagger
- * /userRole/all:
+ * /accountRole/all:
  *   get:
- *     summary: Get all user-role assignments (with pagination)
- *     tags: [UserRole]
+ *     summary: Get all account-role assignments (with pagination)
+ *     tags: [AccountRole]
  *     security:
  *       - cookieAuth: []
  *     parameters:
@@ -32,17 +32,17 @@ const router = express.Router();
  *         description: Page size
  *     responses:
  *       200:
- *         description: List of user-role assignments
+ *         description: List of account-role assignments
  *       500:
  *         description: Server error
  */
 
 /**
  * @swagger
- * /userRole/add:
+ * /accountRole/add:
  *   post:
- *     summary: Assign a role to a user
- *     tags: [UserRole]
+ *     summary: Assign a role to an account
+ *     tags: [AccountRole]
  *     security:
  *       - cookieAuth: []
  *     requestBody:
@@ -52,26 +52,26 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             required:
- *               - userId
+ *               - accountId
  *               - roleId
  *             properties:
- *               userId:
+ *               accountId:
  *                 type: string
  *               roleId:
  *                 type: string
  *     responses:
  *       200:
- *         description: UserRole added
+ *         description: AccountRole added
  *       500:
  *         description: Server error
  */
 
 /**
  * @swagger
- * /userRole/update:
+ * /accountRole/update:
  *   post:
- *     summary: Update user-role assignment
- *     tags: [UserRole]
+ *     summary: Update account-role assignment
+ *     tags: [AccountRole]
  *     security:
  *       - cookieAuth: []
  *     requestBody:
@@ -80,32 +80,30 @@ const router = express.Router();
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - _id
  *             properties:
  *               _id:
  *                 type: string
- *               userId:
+ *               accountId:
  *                 type: string
  *               roleId:
  *                 type: string
  *     responses:
  *       200:
- *         description: UserRole updated
+ *         description: AccountRole updated
  *       400:
  *         description: Invalid input
  *       404:
- *         description: UserRole not found
+ *         description: AccountRole not found
  *       500:
  *         description: Server error
  */
 
 /**
  * @swagger
- * /userRole/delete:
+ * /accountRole/delete:
  *   post:
- *     summary: Delete user-role assignment
- *     tags: [UserRole]
+ *     summary: Delete account-role assignment
+ *     tags: [AccountRole]
  *     security:
  *       - cookieAuth: []
  *     requestBody:
@@ -114,32 +112,23 @@ const router = express.Router();
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - _id
  *             properties:
  *               _id:
  *                 type: string
  *     responses:
  *       200:
- *         description: UserRole deleted
+ *         description: AccountRole deleted
  *       400:
  *         description: Invalid input
  *       404:
- *         description: UserRole not found
+ *         description: AccountRole not found
  *       500:
  *         description: Server error
  */
 
-/**
- * /all?page=1&size=10
- * /add
- * /update
- * /delete
- */
-
-router.get("/all", authProtect, getAllUserRoles);
-router.post("/add", authProtect, addUserRole);
-router.post("/update", authProtect, updateUserRole);
-router.post("/delete", authProtect, deleteUserRole);
+router.get("/all", authProtect, getAllAccountRoles);
+router.post("/add", authProtect, addAccountRole);
+router.post("/update", authProtect, updateAccountRole);
+router.post("/delete", authProtect, deleteAccountRole);
 
 export default router;
