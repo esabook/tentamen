@@ -8,7 +8,19 @@ const answer_options = {
 
 const soalSchema = new mongoose.Schema({
   quetion_html: String,
-  answer_type: Number, // 1: pilihan ganda, 2: isian singkat, 3: isian panjang, drag and drop, 4: audio, 5: video, 6: gambar
+  answer_type: {
+    type: String,
+    enum: [
+      "pilihan_ganda", // pilihan ganda
+      "pilihan_ganda_komplek", // pilihan ganda kompleks
+      "esai", // isian singkat
+      "upload", // audio
+      "drag_and_drop", // drag and drop
+      "pernyataan", // pernyataan
+      "pencocokan", // pencocokan
+    ],
+    default:"pilihan_ganda", 
+  },
 
   answer_options: [answer_options], // array of jawaban, bisa kosong jika isian singkat atau panjang
 

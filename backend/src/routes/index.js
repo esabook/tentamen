@@ -8,6 +8,7 @@ import soalRoutes from "./soal/soal.route.js"
 import soalTagRoutes from "./soal/soalTag.route.js"
 import soalCategoryRoutes from "./soal/soalCategory.route.js"
 import humanRoutes from "./human/human.route.js"
+import ujianRoutes from "./ujian/ujian.route.js"
 
 
 /**
@@ -49,6 +50,7 @@ router.use("/soal", soalRoutes);
 router.use("/soal/tag", soalTagRoutes);
 router.use("/soal/category", soalCategoryRoutes);
 router.use("/human", humanRoutes);
+router.use("/ujian", ujianRoutes);
 
 
 export default router;

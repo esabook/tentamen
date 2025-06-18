@@ -56,7 +56,16 @@ app.use(express.json());
 app.use(logMiddleware);
 
 app.use("/api", apiRoutes);
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  swaggerOptions: {
+    docExpansion: 'none', // Collapse all by default
+    layout: "StandaloneLayout"
+  },
+  customSiteTitle: 'CBT Tentamen API Docs',
+  customCss: '.swagger-ui .topbar { display: none } /* Hide the top bar */',
+
+  customfavIcon: '/favicon.ico'
+}));
 
 app.use(errorLogger);
 
