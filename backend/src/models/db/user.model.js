@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Human from "./human.model.js"
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -16,6 +17,14 @@ const userSchema = new mongoose.Schema({
     },
     full_name: {
         type: String
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
+    user_detail: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Human",
     }
 });
 

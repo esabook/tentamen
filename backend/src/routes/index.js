@@ -1,7 +1,29 @@
 import express from "express";
 
-import authRoutes from "./auth.route.js"
-import profileRoutes from "./profile.route.js"
+import authRoutes from "./auth/auth.route.js"
+import profileRoutes from "./profile/profile.route.js"
+import roleRoutes from "./permission/role.route.js"
+import permissionRoutes from "./permission/permission.route.js"
+import soalRoutes from "./soal/soal.route.js"
+import soalTagRoutes from "./soal/soalTag.route.js"
+import soalCategoryRoutes from "./soal/soalCategory.route.js"
+import humanRoutes from "./human/human.route.js"
+
+
+/**
+ * @swagger
+ * tags:
+ *   - name: Auth
+ *     description: Authentication endpoints
+ *   - name: Profile
+ *     description: User profile endpoints
+ *   - name: Role
+ *     description: Role management endpoints
+ *   - name: Permission
+ *     description: Permission management endpoints
+ *   - name: Soal
+ *     description: Soal (question) management endpoints
+ */
 
 const router = express.Router();
 
@@ -21,6 +43,12 @@ const router = express.Router();
  */
 router.use("/auth", authRoutes);
 router.use("/profile", profileRoutes);
+router.use("/role", roleRoutes);
+router.use("/permission", permissionRoutes);
+router.use("/soal", soalRoutes);
+router.use("/soal/tag", soalTagRoutes);
+router.use("/soal/category", soalCategoryRoutes);
+router.use("/human", humanRoutes);
 
 
 export default router;

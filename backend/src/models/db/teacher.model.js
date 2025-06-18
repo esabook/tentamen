@@ -1,6 +1,0 @@
-/**
- * +nama
- * nip
- * foto
- * kontak
- */

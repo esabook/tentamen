@@ -1,7 +1,7 @@
-import { message500 } from "../models/response/message500.js";
-import { generateJwtToken } from "../libs/util.js";
-import User from "../models/db/user.model.js";
-import bcrypt from "bcryptjs"
+import { message500 } from "../../models/response/message500.js";
+import { generateJwtToken } from "../../libs/util.js";
+import User from "../../models/db/user.model.js";
+import bcrypt from "bcryptjs";
 
 export const signUp = async (req, res) => {
     const { full_name, email, password } = req.body;
@@ -69,17 +69,17 @@ export const signIn = async (req, res) => {
         }
 
 
-        generateJwtToken(user._id, res)
+        var token = generateJwtToken(user._id, res);
 
         res.status(200).json({
-            _id: user._id,
+            jwt: token,
             full_name: user.full_name,
             email: user.email,
             profilePic: user.profilePic
         });
 
     } catch (error) {
-        console.log("Error in loginController", error)
+        console.log("Error in loginController", error);
         res.status(500).json(message500);
     }
 };
@@ -87,10 +87,10 @@ export const signIn = async (req, res) => {
 
 export const signOut = (req, res) => {
     try {
-        res.cookie("jwt", "", { maxAge: 0 })
-        res.status(200).json({ message: "Logout successfully." })
+        res.cookie("jwt", "", { maxAge: 0 });
+        res.status(200).json({ message: "Logout successfully." });
     } catch (error) {
-        console.log("Error in loginController", error)
+        console.log("Error in loginController", error);
         res.status(500).json(message500);
     }
 };

@@ -5,13 +5,15 @@ import mongoose from "mongoose";
  */
 const userRoleSchema = new mongoose.Schema({
     user_id: {
-        type: String,
+        type: mongoose.Types.ObjectId,
         required: true,
-        unique: true
+        unique: true,
+        ref: "User"
     },
     role_id: {
-        type: String,
-        require: true
+        type: mongoose.Types.ObjectId,
+        require: true,
+        ref: "Role"
     }
 });
 

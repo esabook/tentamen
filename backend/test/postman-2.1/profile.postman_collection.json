@@ -1,0 +1,51 @@
+{
+  "info": {
+    "_postman_id": "profile-collection-2025-06-18",
+    "name": "profile",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "update profile",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"full_name\": \"Nama Baru\",\n  \"profile_pic\": \"https://example.com/pic.jpg\"\n}"
+        },
+        "url": {
+          "raw": "{{host}}/api/profile/update",
+          "host": ["{{host}}"],
+          "path": ["api", "profile", "update"]
+        }
+      }
+    },
+    {
+      "name": "deactivate profile",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/api/profile/deactivate",
+          "host": ["{{host}}"],
+          "path": ["api", "profile", "deactivate"]
+        }
+      }
+    },
+    {
+      "name": "delete profile",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/api/profile/delete",
+          "host": ["{{host}}"],
+          "path": ["api", "profile", "delete"]
+        }
+      }
+    }
+  ]
+}

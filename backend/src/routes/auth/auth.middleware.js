@@ -1,15 +1,17 @@
 import jwt from "jsonwebtoken";
-import User from "../models/db/user.model.js";
-import { message500 } from "../models/response/message500.js";
+import User from "../../models/db/user.model.js";
+import { message500 } from "../../models/response/message500.js";
 
 
 export const authProtect = async (req, res, next) => {
     try {
-        const token = req.cookie.jwt
+
+        
+        const token = req.cookie?.jwt || req.headers.jwt;
 
         if(!token){
             return res.status(401).json({
-                message: "Unauthorized - No Token provided."
+                message: "Unauthorized - [2] No Token provided."
             });
         }
 
