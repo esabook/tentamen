@@ -7,6 +7,8 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 
 import { connectDB } from "./libs/db.js";
+import http from 'http';
+import { setupWebSocket } from './websocket.js';
 
 env.config();
 
@@ -22,8 +24,8 @@ const swaggerOptions = {
       description: 'API documentation for CBT Tentamen backend.<br/>To use this page you sould fill the Authorize.jwt with jwt from /auth/signin response.',
       contact: {
         name: 'CBT Tentamen Team',
-        email: '-',
-        url: '-'
+        email: 'esa_book@outlook.com',
+        url: 'https://github.com/esabook/tentamen'
       },
       license: {
         name: 'MIT',
@@ -69,7 +71,10 @@ app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
 
 app.use(errorLogger);
 
-app.listen(PORT, () => {
+const server = http.createServer(app);
+
+server.listen(PORT, () => {
     console.log("Backend running localhost:" + PORT);
     connectDB();
+    setupWebSocket(server);
 });
