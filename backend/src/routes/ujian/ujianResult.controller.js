@@ -2,6 +2,7 @@ import UjianResult from '../../models/db/ujianResult.model.js';
 import Ujian from '../../models/db/ujian.model.js';
 import Account from '../../models/db/account.model.js';
 import SoalGroup from '../../models/db/soalGroup.model.js';
+import { getCache } from '../../libs/cache.js';
 
 // GET /ujianResult/:ujianId
 export const getUjianResult = async (req, res) => {
@@ -24,9 +25,17 @@ export const getUjianResult = async (req, res) => {
 export const getLiveLeaderboard = async (req, res) => {
   try {
     const { ujianId } = req.params;
+    const redis = getCache();
+    const cacheKey = `leaderboard:${ujianId}`;
+    let cached = await redis.get(cacheKey);
+    if (cached) {
+      return res.json(JSON.parse(cached));
+    }
     const result = await UjianResult.findOne({ ujian_id: ujianId }, { leaderboard: 1, last_updated: 1 });
     if (!result) return res.status(404).json({ message: 'UjianResult not found' });
-    res.json({ leaderboard: result.leaderboard, last_updated: result.last_updated });
+    const response = { leaderboard: result.leaderboard, last_updated: result.last_updated };
+    await redis.set(cacheKey, JSON.stringify(response), { EX: 10 }); // cache 10 detik
+    res.json(response);
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch leaderboard', error: err.message });
   }
@@ -58,6 +67,11 @@ export const updatePesertaScore = async (req, res) => {
       .map(p => ({ account_id: p.account_id, skor: p.skor }));
     result.last_updated = new Date();
     await result.save();
+    // Invalidate cache leaderboard
+    try {
+      const redis = getCache();
+      await redis.del(`leaderboard:${ujianId}`);
+    } catch (e) { /* ignore cache error */ }
     res.json({ message: 'Score updated', leaderboard: result.leaderboard });
   } catch (err) {
     res.status(500).json({ message: 'Failed to update score', error: err.message });

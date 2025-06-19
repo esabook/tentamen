@@ -76,7 +76,7 @@ router.get('/:ujianId/leaderboard', authProtect, getLiveLeaderboard);
 /**
  * @swagger
  * /ujianResult/{ujianId}/score:
- *   patch:
+ *   post:
  *     summary: Update peserta score (for live leaderboard)
  *     tags: [UjianResult]
  *     security:
@@ -117,6 +117,6 @@ router.get('/:ujianId/leaderboard', authProtect, getLiveLeaderboard);
  *       500:
  *         description: Server error
  */
-router.patch('/:ujianId/score', authProtect, updatePesertaScore);
+router.post('/:ujianId/score', authProtect, updatePesertaScore);
 
 export default router;

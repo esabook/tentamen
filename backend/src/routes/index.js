@@ -11,22 +11,6 @@ import humanRoutes from "./human/human.route.js"
 import ujianRoutes from "./ujian/ujian.route.js"
 import ujianResultRoutes from "./ujian/ujianResult.route.js"
 
-
-/**
- * @swagger
- * tags:
- *   - name: Auth
- *     description: Authentication endpoints
- *   - name: Profile
- *     description: Account profile endpoints
- *   - name: Role
- *     description: Role management endpoints
- *   - name: Permission
- *     description: Permission management endpoints
- *   - name: Soal
- *     description: Soal (question) management endpoints
- */
-
 const router = express.Router();
 
 /**
