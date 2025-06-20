@@ -5,9 +5,7 @@ import { message500 } from "../../models/response/message500.js";
 
 export const authProtect = async (req, res, next) => {
     try {
-
-        
-        const token = req.cookie?.jwt || req.headers.jwt;
+        const token = req.headers.authorization?.split(" ")[1];
 
         if(!token){
             return res.status(401).json({
@@ -22,14 +20,20 @@ export const authProtect = async (req, res, next) => {
             });
         }
 
-        const user = await Account.findById(decoded.userId).select("-password");
-        if (!user) {
+        const account = await Account.findById(decoded.userId).select("-password");
+        if (!account) {
              return res.status(404).json({
                 message: "Active user not found."
             });
         }
 
-        req.user = user
+        req.account = account
+
+        // save account to redis session if needed
+        // await redisClient.set(`session:${account._id}`, JSON.stringify(account), 'EX', 3600); // 1 hour expiration
+        // req.session = account; // if you use session middleware
+        // req.session.account = account; // if you use session middleware with custom session object
+        // req.session.user = account; // if you use session middleware with custom user object 
 
         next();
 

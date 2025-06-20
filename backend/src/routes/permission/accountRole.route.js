@@ -7,16 +7,16 @@ const router = express.Router();
 /**
  * @swagger
  * tags:
- *   name: AccountRole
+ *   name: Account/Role
  *   description: Account-role assignment endpoints
  */
 
 /**
  * @swagger
- * /accountRole/all:
+ * /account/role/all:
  *   get:
  *     summary: Get all account-role assignments (with pagination)
- *     tags: [AccountRole]
+ *     tags: [Account/Role]
  *     security:
  *       - cookieAuth: []
  *     parameters:
@@ -39,10 +39,10 @@ const router = express.Router();
 
 /**
  * @swagger
- * /accountRole/add:
+ * /account/role/add:
  *   post:
  *     summary: Assign a role to an account
- *     tags: [AccountRole]
+ *     tags: [Account/Role]
  *     security:
  *       - cookieAuth: []
  *     requestBody:
@@ -61,17 +61,17 @@ const router = express.Router();
  *                 type: string
  *     responses:
  *       200:
- *         description: AccountRole added
+ *         description: Account/Role added
  *       500:
  *         description: Server error
  */
 
 /**
  * @swagger
- * /accountRole/update:
+ * /account/role/update:
  *   post:
  *     summary: Update account-role assignment
- *     tags: [AccountRole]
+ *     tags: [Account/Role]
  *     security:
  *       - cookieAuth: []
  *     requestBody:
@@ -89,21 +89,21 @@ const router = express.Router();
  *                 type: string
  *     responses:
  *       200:
- *         description: AccountRole updated
+ *         description: Account/Role updated
  *       400:
  *         description: Invalid input
  *       404:
- *         description: AccountRole not found
+ *         description: Account/Role not found
  *       500:
  *         description: Server error
  */
 
 /**
  * @swagger
- * /accountRole/delete:
+ * /account/role/delete:
  *   post:
  *     summary: Delete account-role assignment
- *     tags: [AccountRole]
+ *     tags: [Account/Role]
  *     security:
  *       - cookieAuth: []
  *     requestBody:
@@ -117,11 +117,11 @@ const router = express.Router();
  *                 type: string
  *     responses:
  *       200:
- *         description: AccountRole deleted
+ *         description: Account/Role deleted
  *       400:
  *         description: Invalid input
  *       404:
- *         description: AccountRole not found
+ *         description: Account/Role not found
  *       500:
  *         description: Server error
  */

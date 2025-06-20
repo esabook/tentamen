@@ -1,7 +1,7 @@
 import express from "express";
 
 import authRoutes from "./auth/auth.route.js"
-import profileRoutes from "./profile/profile.route.js"
+import accountRoutes from "./account/account.route.js"
 import roleRoutes from "./permission/role.route.js"
 import permissionRoutes from "./permission/permission.route.js"
 import soalRoutes from "./soal/soal.route.js"
@@ -28,7 +28,7 @@ const router = express.Router();
  * 
  */
 router.use("/auth", authRoutes);
-router.use("/profile", profileRoutes);
+router.use("/account", accountRoutes);
 router.use("/role", roleRoutes);
 router.use("/permission", permissionRoutes);
 router.use("/soal", soalRoutes);
@@ -36,7 +36,7 @@ router.use("/soal/tag", soalTagRoutes);
 router.use("/soal/category", soalCategoryRoutes);
 router.use("/human", humanRoutes);
 router.use("/ujian", ujianRoutes);
-router.use("/ujianResult", ujianResultRoutes);
+router.use("/ujian/result", ujianResultRoutes);
 
 
 export default router;

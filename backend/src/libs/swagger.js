@@ -1,4 +1,3 @@
-
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 
@@ -24,16 +23,16 @@ const swaggerOptions = {
     ],
     components: {
       securitySchemes: {
-        cookieAuth: {
-          type: 'apiKey',
-          in: 'header',
-          name: 'jwt',
-          description: 'JWT auth via cookie or header named jwt'
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}". <br/>Fill this field with <code>token</code> only without "Bearer" prefix.',
         }
       }
     },
     security: [
-      { jwt: [] }
+      { bearerAuth: [] }
     ]
   },
   apis: ['./src/routes/**/*.js', './src/models/db/*.js'], // Path to the API docs
@@ -41,14 +40,56 @@ const swaggerOptions = {
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
+// Sort tags by name/title ascending
+if (swaggerSpec.tags) {
+  swaggerSpec.tags.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+}
+
 export const swaggerSetup = swaggerUi.setup(swaggerSpec, {
   swaggerOptions: {
     docExpansion: 'none', // Collapse all by default
-    layout: "StandaloneLayout"
+    layout: "StandaloneLayout",
+    // Enable "Export" (curl, Postman, etc) in Swagger UI
+    supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch', 'options', 'head', 'trace'],
+    tryItOutEnabled: true,
+    displayRequestDuration: true,
+    showExtensions: true,
+    showCommonExtensions: true,
+    // Enable "Copy as curl" and "Export" buttons
+    requestSnippetsEnabled: true,
+    requestSnippets: [
+      {
+        label: 'HTTP',
+        syntax: 'http',
+      },
+      {
+        label: 'JavaScript (fetch)',
+        syntax: 'javascript',
+      },
+      {
+        label: 'Python (requests)',
+        syntax: 'python',
+      },
+      {
+        label: 'Java (OkHttp)',
+        syntax: 'java',
+      },
+      {
+        label: 'C# (.NET HttpClient)',
+        syntax: 'csharp',
+      },
+      {
+        label: 'cURL',
+        syntax: 'curl',
+      },
+      {
+        label: 'Postman',
+        syntax: 'postman',
+      },
+    ],
   },
   customSiteTitle: 'CBT Tentamen API Docs',
   customCss: '.swagger-ui .topbar { display: none } /* Hide the top bar */',
-
   customfavIcon: '/favicon.ico'
 });
 

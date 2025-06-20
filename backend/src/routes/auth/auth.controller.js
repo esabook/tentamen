@@ -94,3 +94,21 @@ export const signOut = (req, res) => {
         res.status(500).json(message500);
     }
 };
+
+export const checkLogin = (req, res) => {
+    try {
+        if (req.account) {
+            res.status(200).json({
+                message: "Login session valid.",
+                account: req.account
+            });
+        } else {
+            res.status(401).json({
+                message: "Unauthorized"
+            });
+        }
+    } catch (error) {
+        console.log("Error in checkLoginController", error);
+        res.status(500).json(message500);
+    }
+}

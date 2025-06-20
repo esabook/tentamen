@@ -79,13 +79,29 @@
  *         description: Logout success
  */
 
+/**
+ * @swagger
+ * /auth/check:
+ *   get:
+ *     summary: Check login status (JWT)
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: User is logged in
+ *       401:
+ *         description: Not logged in
+ */
+
 import express from "express";
-import { signOut, signUp, signIn } from './auth.controller.js';
+import { signOut, signUp, signIn, checkLogin } from './auth.controller.js';
+import { authProtect } from './auth.middleware.js';
 
 const router = express.Router();
 
 router.post("/signup", signUp); // Register new account
 router.post("/signin", signIn); // Login account
 router.get("/logout", signOut); // Logout account
+
+router.get("/check", authProtect, checkLogin); // Check login status
 
 export default router;

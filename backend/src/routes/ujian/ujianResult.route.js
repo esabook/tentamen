@@ -7,13 +7,13 @@ const router = express.Router();
 /**
  * @swagger
  * tags:
- *   - name: UjianResult
+ *   - name: Ujian/Result
  *     description: |
  *       Hasil ujian & live leaderboard endpoints.
  *       
  *       ## Live Leaderboard via Socket.io
- *       - Path: `/api/ujianResult/leaderboard/ws`
- *       - Connect: `const socket = io('http://localhost:PORT', { path: '/api/ujianResult/leaderboard/ws' })`
+ *       - Path: `/api/ujian/result/leaderboard/ws`
+ *       - Connect: `const socket = io('http://localhost:PORT', { path: '/api/ujian/result/leaderboard/ws' })`
  *       - Subscribe: `socket.emit('subscribeLeaderboard', { ujianId })`
  *       - Unsubscribe: `socket.emit('unsubscribeLeaderboard', { ujianId })`
  *       - Event: `leaderboard` (akan dikirim otomatis setiap update)
@@ -25,10 +25,10 @@ const router = express.Router();
 
 /**
  * @swagger
- * /ujianResult/{ujianId}:
+ * /ujian/result/{ujianId}:
  *   get:
  *     summary: Get ujian result detail
- *     tags: [UjianResult]
+ *     tags: [Ujian/Result]
  *     security:
  *       - cookieAuth: []
  *     parameters:
@@ -42,7 +42,7 @@ const router = express.Router();
  *       200:
  *         description: Ujian result detail
  *       404:
- *         description: UjianResult not found
+ *         description: Ujian/Result not found
  *       500:
  *         description: Server error
  */
@@ -50,10 +50,10 @@ router.get('/:ujianId', authProtect, getUjianResult);
 
 /**
  * @swagger
- * /ujianResult/{ujianId}/leaderboard:
+ * /ujian/result/{ujianId}/leaderboard:
  *   get:
  *     summary: Get live leaderboard for ujian
- *     tags: [UjianResult]
+ *     tags: [Ujian/Result]
  *     security:
  *       - cookieAuth: []
  *     parameters:
@@ -67,7 +67,7 @@ router.get('/:ujianId', authProtect, getUjianResult);
  *       200:
  *         description: Leaderboard data
  *       404:
- *         description: UjianResult not found
+ *         description: Ujian/Result not found
  *       500:
  *         description: Server error
  */
@@ -75,10 +75,10 @@ router.get('/:ujianId/leaderboard', authProtect, getLiveLeaderboard);
 
 /**
  * @swagger
- * /ujianResult/{ujianId}/score:
+ * /ujian/result/{ujianId}/score:
  *   post:
  *     summary: Update peserta score (for live leaderboard)
- *     tags: [UjianResult]
+ *     tags: [Ujian/Result]
  *     security:
  *       - cookieAuth: []
  *     parameters:
@@ -113,7 +113,7 @@ router.get('/:ujianId/leaderboard', authProtect, getLiveLeaderboard);
  *       200:
  *         description: Score updated, leaderboard updated
  *       404:
- *         description: UjianResult not found
+ *         description: Ujian/Result not found
  *       500:
  *         description: Server error
  */
