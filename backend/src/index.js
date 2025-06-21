@@ -5,6 +5,7 @@ import { logMiddleware, errorLogger } from "./middleware/log.middleware.js";
 
 import { connectDB } from "./libs/db.js";
 import http from 'http';
+import cors from 'cors';
 import { setupWebSocket } from './websocket.js';
 import { connectCache } from './libs/cache.js';
 import { swaggerSetup, swaggerUiServe } from "./libs/swagger.js";
@@ -15,6 +16,12 @@ const app = express();
 const PORT = process.env.PORT;
 
 
+app.use(cors({
+    origin: process.env.CORS_ORIGIN || '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', ',x-custom-header'],
+    credentials: true,
+}));
 
 app.use(express.json());
 app.use(logMiddleware);
