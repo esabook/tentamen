@@ -4,7 +4,7 @@ import { message500 } from '../../models/response/message500.js';
 
 export const getProfile = async (req, res) => {
   try {
-    res.status(200).json(req.user);
+    res.status(200).json(req.account);
   } catch (error) {
     res.status(500).json(message500);
   }
@@ -14,7 +14,7 @@ export const updateProfile = async (req, res) => {
   try {
     const { full_name, email, profilePic } = req.body;
     const updated = await Account.findByIdAndUpdate(
-      req.user._id,
+      req.account._id,
       { full_name, email, profilePic },
       { new: true, runValidators: true }
     ).select('-password');
@@ -26,7 +26,7 @@ export const updateProfile = async (req, res) => {
 
 export const deleteAccount = async (req, res) => {
   try {
-    await Account.findByIdAndDelete(req.user._id);
+    await Account.findByIdAndDelete(req.account._id);
     res.status(200).json({ message: 'Account deleted.' });
   } catch (error) {
     res.status(500).json(message500);
@@ -36,7 +36,7 @@ export const deleteAccount = async (req, res) => {
 export const changePassword = async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
-    const account = await Account.findById(req.user._id);
+    const account = await Account.findById(req.account._id);
     if (!account) return res.status(404).json({ message: 'Account not found.' });
     const valid = await bcrypt.compare(oldPassword, account.password);
     if (!valid) return res.status(400).json({ message: 'Old password incorrect.' });
