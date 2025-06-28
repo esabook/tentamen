@@ -27,12 +27,18 @@ export default function Login() {
           replace: true,
         });
       }
+
+      if (error){
+        setError(error)
+      }
       
     } catch (err) {
       console.error('Login error:', err);
-      setError('Login gagal. Cek username/password.');
+      setError(err);
     }
   };
+
+  console.log("authLoading", authLoading)
 
   if (authLoading) {
     return (

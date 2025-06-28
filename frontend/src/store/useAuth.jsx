@@ -2,16 +2,18 @@ import { getProfile } from "../api/account.js";
 import { create } from "zustand";
 import { logout, signin } from "../api/auth.js";
 
-
 export const useAuthStore = create((set) => ({
   isAuthenticated: false,
   account: null,
-  authLoading: false,
-  setUser: (account) => set({ account }),
+  authLoading: true,
+  error: null,
+  setAccount: (account) => set({ account }),
   setIsAuthenticated: (isAuthenticated) => set({ isAuthenticated }),
   setAuthLoading: (authLoading) => set({ authLoading }),
 
   checkAuth: async () => {
+
+    setTimeout(()=>{console.log("2sec")}, 2000);
     const token = localStorage.getItem("token");
     if (token) {
       set({ authLoading: true });
@@ -23,11 +25,12 @@ export const useAuthStore = create((set) => ({
             authLoading: false,
           });
         })
-        .catch(() => {
+        .catch((error) => {
           set({
             isAuthenticated: false,
             account: null,
             authLoading: false,
+            error: error,
           });
         });
     } else {
@@ -35,29 +38,34 @@ export const useAuthStore = create((set) => ({
         isAuthenticated: false,
         account: null,
         authLoading: false,
+        error: null,
       });
     }
   },
   signin: async (username, password) => {
+    setTimeout(()=>{console.log("2sec")}, 2000);
     signin(username, password)
       .then((data) => {
+
         localStorage.setItem("token", data.jwt);
-        set({ isAuthenticated: true, account: data });
+        set({ isAuthenticated: true, account: data, error: null });
         console.log("Login successful, token stored:", data.jwt);
       })
       .catch((error) => {
         console.error("Login error:", error);
+        set({ error: error });
       });
   },
   signout: async () => {
-      logout()
-        .then(() => {
-          localStorage.removeItem("token");
-          set({ isAuthenticated: false, account: null });
-          console.log("Logout successful, token removed.");
-        })
-        .catch((error) => {
-          console.error("Logout error:", error);
-        });
-    },
+    logout()
+      .then(() => {
+        localStorage.removeItem("token");
+        set({ isAuthenticated: false, account: null, error: null });
+        console.log("Logout successful, token removed.");
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+        set({ error: error });
+      });
+  },
 }));

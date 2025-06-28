@@ -3,27 +3,34 @@ import AppRoutes from "./AppRoutes";
 import { useAuthStore } from "./store/useAuth.jsx";
 import "./index.css";
 import { useEffect } from "react";
+import LoadingSpinner from "./components/LoadingSpinner.jsx";
 
 function App() {
-  const { isAuthenticated, checkAuth } = useAuthStore();
+  const { isAuthenticated, checkAuth, authLoading } = useAuthStore();
+
+  console.log("App authLoading: ", authLoading);
+
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
+  }, [checkAuth, authLoading]);
 
-  
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center ">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   const rootPath = isAuthenticated ? "/home" : "/login";
-  
-  console.log("App component rendered, isAuthenticated:", isAuthenticated);
-  console.log("Root path determined:", rootPath);
-
+  console.log("Root path determined:", rootPath, " isAuthenticated:", isAuthenticated);
 
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Navigate replace={rootPath} />} />
-        <Route path="*" element={<AppRoutes />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigate to={rootPath} replace={true} />} />
+      <Route path="*" element={<AppRoutes />} />
+    </Routes>
   );
 }
 
