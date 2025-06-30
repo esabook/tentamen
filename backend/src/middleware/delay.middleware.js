@@ -1,7 +1,7 @@
 export const delayMiddleware = (req, res, next) => {
-  const delay = process.env.RESPONSE_DELAY_MS || 0;
+  const delay = req.headers["delay-ms"] || 0;
 
-  if (delay > 0) {
+  if (delay > 0 && delay < 10_000) {
     setTimeout(() => {
       next();
     }, delay);

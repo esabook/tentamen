@@ -1,8 +1,16 @@
 import { DynamicIcon } from "lucide-react/dynamic";
-import { useAuthStore } from "../store/useAuth";
+import { authStore } from "../store/authStore.jsx";
+import { useEffect } from "react";
+import { loadingDialogStore } from "../store/singleton/loadingDialogStore.jsx";
 
 const Navbar = () => {
-  const { account, signout } = useAuthStore();
+  const { account, signout, authLoading } = authStore();
+  const { setShow } = loadingDialogStore();
+
+  useEffect(() => {
+    setShow(authLoading);
+  }, [authLoading]);
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-none">

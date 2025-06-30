@@ -7,19 +7,35 @@ import React from "react";
  * @param {function} [props.onDismiss] - fungsi untuk dismiss overlay (opsional)
  */
 export default function FullscreenLoading({ show }) {
-  if (!show) return null;
+  const instance = document.getElementById("dialog_loading");
+  if (show) {
+    instance?.showModal();
+  } else {
+    instance?.close();
+  }
+
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
-      style={{ transition: "opacity 0.2s" }}
-      role="presentation"
+    <dialog
+      id="dialog_loading"
+      className="modal sm:modal-middle"
+      style={{
+        width: "auto",
+        height: "auto",
+        backgroundColor: "rgba(0,0,0,0.15)",
+      }}
     >
       <div
-        className="flex flex-col items-center"
-        onClick={(e) => e.stopPropagation()}
+        className="modal-box flex items-center justify-center p-0"
+        style={{
+          width: "fit-content",
+          height: "fit-content",
+          padding: "16px",
+          minWidth: 0,
+          minHeight: 0,
+        }}
       >
-        <span className="loading loading-spinner loading-lg text-primary" />
+        <span className="loading loading-spinner loading-xl" />
       </div>
-    </div>
+    </dialog>
   );
 }

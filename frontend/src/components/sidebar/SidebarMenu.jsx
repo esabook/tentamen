@@ -17,7 +17,7 @@ export function renderSidebarMenu(
       return menu.submenu ? (
         <li key={menu.url}>
           <details>
-            <summary>
+            <summary className="text-base-content">
               <MenuIcon icon={menu.icon} />
               {menu.title}
               <MenuBadge text={menu.badge_text} type={menu.badge_type} />

@@ -11,5 +11,5 @@ export function MenuBadge({ text, type }) {
 
 export function MenuIcon({ icon }) {
   // Ganti dengan komponen icon sesuai kebutuhan project Anda
-  return <DynamicIcon name={icon} color="black" size={18} />;
+  return <DynamicIcon name={icon} color="currentcolor" size={18} />;
 }

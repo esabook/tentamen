@@ -14,3 +14,13 @@ export async function logout() {
     console.error("Logout error:", e);
   }
 }
+
+export async function signup(full_name, email, password) {
+  const res = await axiosInstance.post(`${API_URL}/signup`, { full_name, email, password });
+  return res.data;
+}
+
+export async function checkLogin() {
+  const res = await axiosInstance.get(`${API_URL}/check`);
+  return res.data;
+}

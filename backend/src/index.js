@@ -20,7 +20,7 @@ const PORT = process.env.PORT;
 app.use(cors({
     origin: process.env.CORS_ORIGIN || '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', ',x-custom-header'],
+    allowedHeaders: ['Content-Type', 'Authorization', ',x-custom-header', 'delay-ms'],
     credentials: true,
 }));
 
