@@ -9,6 +9,7 @@ import cors from 'cors';
 import { setupWebSocket } from './websocket.js';
 import { connectCache } from './libs/cache.js';
 import { swaggerSetup, swaggerUiServe } from "./libs/swagger.js";
+import { delayMiddleware } from "./middleware/delay.middleware.js";
 
 env.config();
 
@@ -24,6 +25,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use(delayMiddleware);
 app.use(logMiddleware);
 
 app.use("/api", apiRoutes);
