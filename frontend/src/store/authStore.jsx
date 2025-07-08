@@ -3,9 +3,9 @@ import { create } from "zustand";
 import { logout, signin } from "../api/auth.js";
 
 export const authStore = create((set) => ({
-  isAuthenticated: false,
+  isAuthenticated: localStorage.getItem("token") ? true : false,
   account: null,
-  authLoading: true,
+  authLoading: false,
   error: null,
 
   setAccount: (account) => set({ account }),

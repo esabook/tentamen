@@ -1,3 +1,6 @@
+
+import { DynamicIcon } from "lucide-react/dynamic";
+
 export default function Loading() {
-  return <span className="loading loading-spinner loading-md" />;
+  return <DynamicIcon name="loader" className="animate-spin" />;
 }
