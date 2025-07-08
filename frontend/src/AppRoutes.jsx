@@ -2,11 +2,12 @@ import { Routes, Route } from "react-router-dom";
 import React from "react";
 
 function lazy(params) {
-  return React.lazy(() => import( /* @vite-ignore */ params));
+  /* @vite-ignore */ 
+  return React.lazy(() => import(params));
 }
 const Login = lazy("./pages/Login");
 const Dashboard = lazy("./pages/Dashboard");
-const NotFound = lazy("./pages/NotFound");
+const NotFound404 = lazy("./pages/NotFound404");
 const Statistik = lazy("./pages/Beranda/Statistik");
 const Leaderboard = lazy("./pages/Beranda/Leaderboard");
 const Pengumuman = lazy("./pages/Beranda/Pengumuman");
@@ -48,6 +49,7 @@ const SistemServer = lazy("./pages/Pengaturan/SistemServer");
 const Bahasa = lazy("./pages/Akun/Bahasa");
 const Tema = lazy("./pages/Akun/Tema");
 const Profil = lazy("./pages/Akun/Profil");
+const Role = lazy("./pages/Akun/Role");
 const ProtectecRoute = lazy("./components/ProtectedRoute");
 
 export default function AppRoutes() {
@@ -97,12 +99,13 @@ export default function AppRoutes() {
         <Route path="versi" element={<Versi />} />
         <Route path="log-perubahan" element={<LogPerubahan />} />
         <Route path="umpan-balik" element={<UmpanBalik />} />
+        <Route path="role" element={<Role />} />
       </Route>
       <Route
         path="*"
         element={
           <ProtectecRoute>
-            <NotFound />
+            <NotFound404 />
           </ProtectecRoute>
         }
       />

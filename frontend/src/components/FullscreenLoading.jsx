@@ -1,41 +1,33 @@
-import React from "react";
+import { Dialog, DialogContent, DialogOverlay } from "./ui/dialog";
+import { DialogTitle } from "./ui/dialog";
+import { DynamicIcon } from "lucide-react/dynamic";
 
 /**
  * Fullscreen loading overlay, transparan, menutupi seluruh halaman.
  * @param {Object} props
  * @param {boolean} props.show - apakah loading tampil
- * @param {function} [props.onDismiss] - fungsi untuk dismiss overlay (opsional)
  */
 export default function FullscreenLoading({ show }) {
-  const instance = document.getElementById("dialog_loading");
-  if (show) {
-    instance?.showModal();
-  } else {
-    instance?.close();
-  }
-
   return (
-    <dialog
-      id="dialog_loading"
-      className="modal sm:modal-middle"
-      style={{
-        width: "auto",
-        height: "auto",
-        backgroundColor: "rgba(0,0,0,0.15)",
-      }}
-    >
-      <div
-        className="modal-box flex items-center justify-center p-0"
-        style={{
-          width: "fit-content",
-          height: "fit-content",
-          padding: "16px",
-          minWidth: 0,
-          minHeight: 0,
-        }}
-      >
-        <span className="loading loading-spinner loading-xl" />
-      </div>
-    </dialog>
+    <Dialog open={show}>
+      <DialogOverlay className="flex items-center justify-center">
+        <div
+          className="flex items-center justify-center border-none shadow-none top-[50%]"
+          style={{
+            boxShadow: "none",
+            width: "fit-content",
+            height: "fit-content",
+            minWidth: 0,
+            minHeight: 0,
+            padding: 0,
+          }}
+        >
+          <DynamicIcon
+            name="loader-pinwheel"
+            className="animate-spin w-12 h-12 text-primary"
+          />
+        </div>
+      </DialogOverlay>
+    </Dialog>
   );
 }

@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
   timeout: 5000,
   headers: {
     "X-Custom-Header": "CBT-Tentament-Client",
-    ...HEADER_DELAY
+    // ...HEADER_DELAY
   },
 });
 
