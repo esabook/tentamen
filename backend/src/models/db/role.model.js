@@ -1,21 +1,32 @@
 import mongoose from "mongoose";
-/**
- * contoh: admin, guru, pengawas, siswa, ortu
- */
-const roleSchema = new mongoose.Schema({
+import { toSnakeCase } from "../../libs/util.js";
+
+const roleSchema = new mongoose.Schema(
+  {
+    _id: {
+      type: String
+    },
     name: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    permissions: [
+      {
         type: String,
-        required: true,
-        unique: true
-    },
-    permission_id: {
-        type: mongoose.Types.ObjectId,
         ref: "Permission",
-        require: true
-    },
+      },
+    ],
     description: {
-        type: String
-    }
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
+
+roleSchema.path("name").set(function (v) {
+  this._id = toSnakeCase(v);
+  return v;
 });
 
 const Role = mongoose.model("Role", roleSchema);

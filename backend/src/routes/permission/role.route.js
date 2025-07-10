@@ -18,7 +18,7 @@ const router = express.Router();
  *     summary: Get all roles (with pagination)
  *     tags: [Role]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -44,7 +44,7 @@ const router = express.Router();
  *     summary: Add a new role
  *     tags: [Role]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -70,7 +70,7 @@ const router = express.Router();
  *     summary: Update role data
  *     tags: [Role]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -104,7 +104,7 @@ const router = express.Router();
  *     summary: Delete role data
  *     tags: [Role]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:

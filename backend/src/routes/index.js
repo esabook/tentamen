@@ -10,23 +10,12 @@ import soalCategoryRoutes from "./soal/soalCategory.route.js"
 import humanRoutes from "./human/human.route.js"
 import ujianRoutes from "./ujian/ujian.route.js"
 import ujianResultRoutes from "./ujian/ujianResult.route.js"
+import appRoutes from "./app/app.route.js"
+
 
 const router = express.Router();
 
-/**
- * TODO:
- * /auth
- * /profile
- * 
- * /role
- * /permission
- * 
- * /soal
- * /ujian
- * /guru
- * /siswa
- * 
- */
+router.use("/app", appRoutes);
 router.use("/auth", authRoutes);
 router.use("/account", accountRoutes);
 router.use("/role", roleRoutes);

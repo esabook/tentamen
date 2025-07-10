@@ -28,7 +28,7 @@ const swaggerOptions = {
           scheme: 'bearer',
           bearerFormat: 'JWT',
           description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}". <br/>Fill this field with <code>token</code> only without "Bearer" prefix.',
-        }
+        },
       }
     },
     security: [
@@ -48,6 +48,7 @@ if (swaggerSpec.tags) {
 export const swaggerSetup = swaggerUi.setup(swaggerSpec, {
   swaggerOptions: {
     docExpansion: 'none', // Collapse all by default
+    persistAuthorization: true,
     layout: "StandaloneLayout",
     // Enable "Export" (curl, Postman, etc) in Swagger UI
     supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch', 'options', 'head', 'trace'],
@@ -90,7 +91,7 @@ export const swaggerSetup = swaggerUi.setup(swaggerSpec, {
   },
   customSiteTitle: 'CBT Tentamen API Docs',
   customCss: '.swagger-ui .topbar { display: none } /* Hide the top bar */',
-  customfavIcon: '/favicon.ico'
+  // customfavIcon: '/favicon.ico'
 });
 
 export const swaggerUiServe = swaggerUi.serve;
