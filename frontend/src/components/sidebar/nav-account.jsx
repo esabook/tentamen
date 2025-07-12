@@ -21,7 +21,6 @@ import {
 } from "../ui/sidebar";
 import { authStore } from "../../store/authStore";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
 
 export function NavAccount({ account }) {
   const { isMobile } = useSidebar();

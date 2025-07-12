@@ -1,10 +1,11 @@
+import { getToken } from '@/store/sessionStore';
 import axios from 'axios';
 // Membaca root url dari .env (Vite: import.meta.env.VITE_API_URL)
 const API_ROOT = import.meta.env.VITE_API_URL || '';
-const HEADER_DELAY = { 'delay-ms': 3000 };
+const HEADER_DELAY = { 'delay-ms': 2000 };
 
 function getBearerToken() {
-  const token = localStorage.getItem('token');
+  const token = getToken();
   if (token) {
     return { Authorization: `Bearer ${token}` };
   }
@@ -21,7 +22,7 @@ const axiosInstance = axios.create({
   headers: {
     'X-Custom-Header': 'CBT-Tentament-Client',
     ...getBearerToken(),
-    // ...HEADER_DELAY
+    ...HEADER_DELAY
   },
 });
 

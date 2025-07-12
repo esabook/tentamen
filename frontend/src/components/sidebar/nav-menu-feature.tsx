@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/sidebar';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../ui/collapsible';
 import { DynamicIcon } from 'lucide-react/dynamic';
-import sidebarMenu from '../../store/menuStore.jsx';
+import sidebarMenu from '../../store/menuStore';
 import { Link, useLocation } from 'react-router-dom';
 
 export function NavFeature() {

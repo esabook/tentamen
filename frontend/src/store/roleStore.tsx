@@ -1,22 +1,37 @@
-import { get } from 'http';
+import type { Role } from '@/models/Role.js';
 import { getRoleAll, roleAdd, roleDelete, roleUpdate } from '../api/role.js';
 import { create } from 'zustand';
+import type { Page } from '@/models/Page.js';
 
-export const authStore = create((set) => ({
+interface RoleStoreInterface {
+  roles: Role[] | null;
+  page: Page | null;
+  isLoading: boolean;
+  error: string | null;
+
+  setIsLoading: (isLoading: boolean) => void;
+
+
+  getRoles: () => void;
+  roleAdd: (data: Role) => void;
+  roleUpdate: (data: Role) => void;
+  roleDelete: (id: string) => void;
+}
+
+export const roleStore = create<RoleStoreInterface>((set) => ({
   roles: null,
+  page: null,
   isLoading: false,
   error: null,
 
-  setRoles: (roles) => set({ roles }),
-  setLoading: (isLoading) => set({ isLoading }),
-  setError: (error) => set({ error }),
-
+  setIsLoading: (isLoading: boolean) => set({ isLoading }),
   getRoles: async () => {
     set({ isLoading: true });
     getRoleAll()
-      .then((data) => {
+      .then(({ data, page, size, total, totalPages }) => {
         set({
           roles: data,
+          page: { page, size, total, totalPages },
           isLoading: false,
           error: null,
         });
@@ -30,7 +45,7 @@ export const authStore = create((set) => ({
       });
   },
   roleAdd: async (data) => {
-    set({ authLoading: true });
+    set({ isLoading: true });
     roleAdd(data)
       .then((newData) => {
         set({
@@ -47,14 +62,21 @@ export const authStore = create((set) => ({
         });
       });
   },
-  roleUpdate: async (data) => {
-    set({ authLoading: true });
-    roleUpdate(data)
-      .then((newData) => {
-        set({
-          roles: newData,
-          isLoading: false,
-          error: null,
+  roleUpdate: async (newData) => {
+    set({ isLoading: true });
+    roleUpdate(newData)
+      .then(({ data }) => {
+        set((state) => {
+          // Temukan dan ganti role yang diupdate di dalam array yang sudah ada
+          const updatedRoles = state.roles
+            ? state.roles.map((role) => (role._id === data._id ? data : role))
+            : null;
+
+          return {
+            roles: updatedRoles,
+            isLoading: false,
+            error: null,
+          };
         });
       })
       .catch((error) => {
@@ -66,7 +88,7 @@ export const authStore = create((set) => ({
       });
   },
   roleDelete: async (id) => {
-    set({ authLoading: true });
+    set({ isLoading: true });
     roleDelete(id)
       .then(() => {
         set({

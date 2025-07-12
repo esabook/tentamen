@@ -3,7 +3,7 @@ import axiosInstance from './axios';
 const API_URL = '/permission';
 
 export async function getPermissionAll() {
-  const res = await axiosInstance.get(`${API_URL}/all`);
+  const res = await axiosInstance.get(`${API_URL}/all?size=50`);
   return res.data;
 }
 

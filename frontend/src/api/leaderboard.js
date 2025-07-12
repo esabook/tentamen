@@ -1,10 +1,8 @@
-import axios from "axios";
+import axiosInstance from "./axios";
 
 const API_URL = "/api/ujianResult";
 
-export async function getLeaderboard(ujianId, token) {
-  const res = await axios.get(`${API_URL}/leaderboard/${ujianId}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export async function getLeaderboard(ujianId) {
+  const res = await axiosInstance.get(`${API_URL}/leaderboard/${ujianId}`);
   return res.data;
 }

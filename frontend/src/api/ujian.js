@@ -1,10 +1,8 @@
-import axios from "axios";
+import axiosInstance from "./axios";
 
 const API_URL = "/api/ujian";
 
-export async function getUjianList(token) {
-  const res = await axios.get(`${API_URL}/list`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export async function getUjianList() {
+  const res = await axiosInstance.get(`${API_URL}/list`);
   return res.data;
 }

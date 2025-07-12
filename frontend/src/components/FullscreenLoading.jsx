@@ -23,8 +23,8 @@ export default function FullscreenLoading({ show }) {
           }}
         >
           <DynamicIcon
-            name="loader-pinwheel"
-            className="animate-spin w-12 h-12 text-primary"
+            name="bolt"
+            className="motion-safe:animate-spin w-12 h-12 text-primary"
           />
         </div>
       </DialogOverlay>

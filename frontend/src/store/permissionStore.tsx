@@ -1,3 +1,4 @@
+import type { Permission } from '@/models/Permission.js';
 import {
   getPermissionAll,
   permissionAdd,
@@ -5,22 +6,33 @@ import {
   permissionUpdate,
 } from '../api/permission.js';
 import { create } from 'zustand';
+import type { Page } from '@/models/Page.js';
 
-export const authStore = create((set) => ({
+interface PermissionStoreInterface {
+  permissions: Permission[] | null;
+  page: Page | null;
+  isLoading: boolean;
+  error: string | null;
+
+  getPermissionAll: () => void;
+  permissionAdd: (data: Permission) => void;
+  permissionUpdate: (data: Permission) => void;
+  permissionDelete: (id: string) => void;
+}
+
+export const permissionStore = create<PermissionStoreInterface>((set) => ({
   permissions: null,
+  page: null,
   isLoading: false,
   error: null,
-
-  setPermissions: (permissions) => set({ permissions }),
-  setLoading: (isLoading) => set({ isLoading }),
-  setError: (error) => set({ error }),
 
   getPermissionAll: async () => {
     set({ isLoading: true });
     getPermissionAll()
-      .then((data) => {
+      .then(({ data, page, size, total, totalPages }) => {
         set({
           permissions: data,
+          page: {page, size, total, totalPages},
           isLoading: false,
           error: null,
         });
@@ -33,8 +45,8 @@ export const authStore = create((set) => ({
         });
       });
   },
-  permissionAdd: async (data) => {
-    set({ authLoading: true });
+  permissionAdd: async (data: Permission) => {
+    set({ isLoading: true });
     permissionAdd(data)
       .then((newData) => {
         set({
@@ -51,8 +63,8 @@ export const authStore = create((set) => ({
         });
       });
   },
-  permissionUpdate: async (data) => {
-    set({ authLoading: true });
+  permissionUpdate: async (data: Permission) => {
+    set({ isLoading: true });
     permissionUpdate(data)
       .then((newData) => {
         set({
@@ -69,8 +81,8 @@ export const authStore = create((set) => ({
         });
       });
   },
-  permissionDelete: async (id) => {
-    set({ authLoading: true });
+  permissionDelete: async (id: string) => {
+    set({ isLoading: true });
     permissionDelete(id)
       .then(() => {
         set({

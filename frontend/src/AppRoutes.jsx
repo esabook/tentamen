@@ -1,56 +1,55 @@
-import { Routes, Route } from "react-router-dom";
-import React from "react";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 function lazy(params) {
-  /* @vite-ignore */ 
+  /* @vite-ignore */
   return React.lazy(() => import(params));
 }
-const Login = lazy("./pages/Login");
-const Dashboard = lazy("./pages/Dashboard");
-const NotFound404 = lazy("./pages/NotFound404");
-const Statistik = lazy("./pages/Beranda/Statistik");
-const Leaderboard = lazy("./pages/Beranda/Leaderboard");
-const Pengumuman = lazy("./pages/Beranda/Pengumuman");
-const Kalender = lazy("./pages/Beranda/Kalender");
-const Berita = lazy("./pages/Beranda/Berita");
-const Notifikasi = lazy("./pages/Beranda/Notifikasi");
-const Pesan = lazy("./pages/Beranda/Pesan");
-const Modul = lazy("./pages/Data Modul/Modul");
-const PaketSoal = lazy("./pages/Data Modul/PaketSoal");
-const ImportSoal = lazy("./pages/Data Modul/ImportSoal");
-const DaftarSoal = lazy("./pages/Data Modul/DaftarSoal");
-const FileManager = lazy("./pages/Data Modul/FileManager");
-const Peserta = lazy("./pages/Data Peserta/Peserta");
-const Kelas = lazy("./pages/Data Peserta/Kelas");
-const ImportPeserta = lazy("./pages/Data Peserta/ImportPeserta");
-const CetakKartu = lazy("./pages/Data Peserta/CetakKartu");
-const JadwalUjian = lazy("./pages/Data Ujian/JadwalUjian");
-const DataUjian = lazy("./pages/Data Ujian/DataUjian");
-const EvaluasiUjian = lazy("./pages/Data Ujian/EvaluasiUjian");
-const HasilUjian = lazy("./pages/Data Ujian/HasilUjian");
-const RekapHasilUjian = lazy("./pages/Data Ujian/RekapHasilUjian");
-const PengaturanUjian = lazy("./pages/Data Ujian/PengaturanUjian");
-const TokenUjian = lazy("./pages/Data Ujian/TokenUjian");
-const Database = lazy("./pages/Alat/Database");
-const BackupRestore = lazy("./pages/Alat/BackupRestore");
-const UmpanBalik = lazy("./pages/Pengaturan/UmpanBalik");
-const LogPerubahan = lazy("./pages/Pengaturan/LogPerubahan");
-const Versi = lazy("./pages/Pengaturan/Versi");
-const SyaratKetentuan = lazy("./pages/Pengaturan/SyaratKetentuan");
-const KebijakanPrivasi = lazy("./pages/Pengaturan/KebijakanPrivasi");
-const Kontak = lazy("./pages/Pengaturan/Kontak");
-const Dokumentasi = lazy("./pages/Pengaturan/Dokumentasi");
-const Tentang = lazy("./pages/Pengaturan/Tentang");
-const Bantuan = lazy("./pages/Pengaturan/Bantuan");
-const Integrasi = lazy("./pages/Pengaturan/Integrasi");
-const Keamanan = lazy("./pages/Pengaturan/Keamanan");
-const Aplikasi = lazy("./pages/Pengaturan/Aplikasi");
-const SistemServer = lazy("./pages/Pengaturan/SistemServer");
-const Bahasa = lazy("./pages/Akun/Bahasa");
-const Tema = lazy("./pages/Akun/Tema");
-const Profil = lazy("./pages/Akun/Profil");
-const Role = lazy("./pages/Akun/Role");
-const ProtectecRoute = lazy("./components/ProtectedRoute");
+const Login = lazy('./pages/Login');
+const Dashboard = lazy('./pages/Dashboard');
+const NotFound404 = lazy('./pages/NotFound404');
+const Statistik = lazy('./pages/Beranda/Statistik');
+const Leaderboard = lazy('./pages/Beranda/Leaderboard');
+const Pengumuman = lazy('./pages/Beranda/Pengumuman');
+const Kalender = lazy('./pages/Beranda/Kalender');
+const Berita = lazy('./pages/Beranda/Berita');
+const Notifikasi = lazy('./pages/Beranda/Notifikasi');
+const Pesan = lazy('./pages/Beranda/Pesan');
+const Modul = lazy('./pages/Data Modul/Modul');
+const PaketSoal = lazy('./pages/Data Modul/PaketSoal');
+const ImportSoal = lazy('./pages/Data Modul/ImportSoal');
+const DaftarSoal = lazy('./pages/Data Modul/DaftarSoal');
+const FileManager = lazy('./pages/Data Modul/FileManager');
+const Peserta = lazy('./pages/Data Peserta/Peserta');
+const Kelas = lazy('./pages/Data Peserta/Kelas');
+const ImportPeserta = lazy('./pages/Data Peserta/ImportPeserta');
+const CetakKartu = lazy('./pages/Data Peserta/CetakKartu');
+const JadwalUjian = lazy('./pages/Data Ujian/JadwalUjian');
+const DataUjian = lazy('./pages/Data Ujian/DataUjian');
+const EvaluasiUjian = lazy('./pages/Data Ujian/EvaluasiUjian');
+const HasilUjian = lazy('./pages/Data Ujian/HasilUjian');
+const RekapHasilUjian = lazy('./pages/Data Ujian/RekapHasilUjian');
+const PengaturanUjian = lazy('./pages/Data Ujian/PengaturanUjian');
+const TokenUjian = lazy('./pages/Data Ujian/TokenUjian');
+const Database = lazy('./pages/Alat/Database');
+const BackupRestore = lazy('./pages/Alat/BackupRestore');
+const UmpanBalik = lazy('./pages/Pengaturan/UmpanBalik');
+const LogPerubahan = lazy('./pages/Pengaturan/LogPerubahan');
+const Versi = lazy('./pages/Pengaturan/Versi');
+const SyaratKetentuan = lazy('./pages/Pengaturan/SyaratKetentuan');
+const KebijakanPrivasi = lazy('./pages/Pengaturan/KebijakanPrivasi');
+const Kontak = lazy('./pages/Pengaturan/Kontak');
+const Dokumentasi = lazy('./pages/Pengaturan/Dokumentasi');
+const Tentang = lazy('./pages/Pengaturan/Tentang');
+const Bantuan = lazy('./pages/Pengaturan/Bantuan');
+const Integrasi = lazy('./pages/Pengaturan/Integrasi');
+const Keamanan = lazy('./pages/Pengaturan/Keamanan');
+const Aplikasi = lazy('./pages/Pengaturan/Aplikasi');
+const SistemServer = lazy('./pages/Pengaturan/SistemServer');
+const Bahasa = lazy('./pages/Akun/Bahasa');
+const Tema = lazy('./pages/Akun/Tema');
+const Profil = lazy('./pages/Akun/Profil');
+const RolePage = lazy('./pages/Akun/RolePage');
 
 export default function AppRoutes() {
   return (
@@ -99,16 +98,9 @@ export default function AppRoutes() {
         <Route path="versi" element={<Versi />} />
         <Route path="log-perubahan" element={<LogPerubahan />} />
         <Route path="umpan-balik" element={<UmpanBalik />} />
-        <Route path="role" element={<Role />} />
+        <Route path="role" element={<RolePage />} />
       </Route>
-      <Route
-        path="*"
-        element={
-          <ProtectecRoute>
-            <NotFound404 />
-          </ProtectecRoute>
-        }
-      />
+      <Route path="*" element={<NotFound404 />} />
     </Routes>
   );
 }

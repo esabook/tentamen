@@ -1,9 +1,9 @@
 import axiosInstance from './axios';
 
-const API_URL = '/account/role';
+const API_URL = '/role';
 
 export async function getRoleAll() {
-  const res = await axiosInstance.get(`${API_URL}/all`);
+  const res = await axiosInstance.get(`${API_URL}/all?size=50`);
   return res.data;
 }
 
