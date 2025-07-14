@@ -1,6 +1,6 @@
 import express from "express";
 import { authProtect } from "../auth/auth.middleware.js";
-import { initPermission, initRole } from "./app.controller.js";
+import { initPermission, initRole, initModule } from "./app.controller.js";
 
 const router = express.Router();
 
@@ -97,5 +97,44 @@ router.post('/initRole', authProtect, initRole);
  *         description: Terjadi kesalahan server saat inisialisasi.
  */
 router.post('/initPermission', authProtect, initPermission);
+/**
+ * @swagger
+ * /app/initModule:
+ *   post:
+ *     summary: Inisialisasi template module
+ *     tags: [App/Initialization]
+ *     security:
+ *       - bearerAuth: []
+ *     description: |
+ *       Menginisialisasi sistem dengan serangkaian kategori dan tag yang telah ditentukan, dikategorikan berdasarkan modul aplikasi.
+ *       Operasi ini idempoten; menggunakan `upsert` untuk hanya membuat data yang belum ada.
+ *       Endpoint ini biasanya digunakan untuk penyiapan sistem dan harus dibatasi hanya untuk administrator.
+ *     responses:
+ *       200:
+ *         description: Kategori dan Tag berhasil diinisialisasi.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Kategori dan Tag initialization complete.
+ *                 createdCount:
+ *                   type: integer
+ *                   description: Jumlah Kategori dan Tag baru yang dibuat.
+ *                   example: 29
+ *                 matchedCount:
+ *                   type: integer
+ *                   description: Jumlah Kategori dan Tag yang sudah ada dan cocok (tidak diubah).
+ *                   example: 0
+ *       401:
+ *         description: Unauthorized, pengguna belum login.
+ *       403:
+ *         description: Forbidden, pengguna tidak memiliki hak untuk melakukan tindakan ini.
+ *       500:
+ *         description: Terjadi kesalahan server saat inisialisasi.
+ */
+router.post('/initModule', authProtect, initModule);
 
 export default router;
