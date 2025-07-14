@@ -2,7 +2,7 @@ import { getToken } from '@/store/sessionStore';
 import axios from 'axios';
 // Membaca root url dari .env (Vite: import.meta.env.VITE_API_URL)
 const API_ROOT = import.meta.env.VITE_API_URL || '';
-const HEADER_DELAY = { 'delay-ms': 2000 };
+// const HEADER_DELAY = { 'delay-ms': 2000 };
 
 function getBearerToken() {
   const token = getToken();
@@ -21,9 +21,17 @@ const axiosInstance = axios.create({
   timeout: 5000,
   headers: {
     'X-Custom-Header': 'CBT-Tentament-Client',
-    ...getBearerToken(),
-    ...HEADER_DELAY
+    // ...HEADER_DELAY
   },
 });
+
+axiosInstance.interceptors.request.use((config)=>{
+  config.headers = {
+    ...config.headers,
+    ...getBearerToken(),
+  }
+  return config;
+
+})
 
 export default axiosInstance;

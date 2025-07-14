@@ -1,4 +1,4 @@
-'use-client'
+'use client'
 
 export function getToken(){
     return localStorage.getItem("token")
