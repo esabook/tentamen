@@ -16,7 +16,7 @@ import { authProtect } from "../auth/auth.middleware.js";
  *     summary: Get all soal groups (bundles) with pagination
  *     tags: [SoalGroup]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -42,7 +42,7 @@ import { authProtect } from "../auth/auth.middleware.js";
  *     summary: Add a new soal group (bundle)
  *     tags: [SoalGroup]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -70,7 +70,7 @@ import { authProtect } from "../auth/auth.middleware.js";
  *     summary: Update soal group (bundle) by ID
  *     tags: [SoalGroup]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -107,7 +107,7 @@ import { authProtect } from "../auth/auth.middleware.js";
  *     summary: Archive soal group (set archived=true) by ID
  *     tags: [SoalGroup]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -131,7 +131,7 @@ import { authProtect } from "../auth/auth.middleware.js";
  *     summary: Delete soal group by ID
  *     tags: [SoalGroup]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

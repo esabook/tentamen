@@ -18,7 +18,7 @@ const router = express.Router();
  *     summary: Get all institutions (with pagination)
  *     tags: [Institution]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -44,7 +44,7 @@ const router = express.Router();
  *     summary: Add a new institution
  *     tags: [Institution]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -72,7 +72,7 @@ const router = express.Router();
  *     summary: Update institution data
  *     tags: [Institution]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -106,7 +106,7 @@ const router = express.Router();
  *     summary: Delete institution data
  *     tags: [Institution]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:

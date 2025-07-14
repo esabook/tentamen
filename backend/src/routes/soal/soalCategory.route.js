@@ -18,7 +18,7 @@ const router = express.Router();
  *     summary: Get all soal categories (with pagination)
  *     tags: [SoalCategory]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -44,7 +44,7 @@ const router = express.Router();
  *     summary: Add a new soal category
  *     tags: [SoalCategory]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -72,7 +72,7 @@ const router = express.Router();
  *     summary: Update soal category data
  *     tags: [SoalCategory]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -106,7 +106,7 @@ const router = express.Router();
  *     summary: Delete soal category data
  *     tags: [SoalCategory]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:

@@ -18,7 +18,7 @@ const router = express.Router();
  *     summary: Get all account-role assignments (with pagination)
  *     tags: [Account/Role]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -44,7 +44,7 @@ const router = express.Router();
  *     summary: Assign a role to an account
  *     tags: [Account/Role]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -73,7 +73,7 @@ const router = express.Router();
  *     summary: Update account-role assignment
  *     tags: [Account/Role]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -105,7 +105,7 @@ const router = express.Router();
  *     summary: Delete account-role assignment
  *     tags: [Account/Role]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:

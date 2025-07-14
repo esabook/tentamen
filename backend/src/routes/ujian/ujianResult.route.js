@@ -30,7 +30,7 @@ const router = express.Router();
  *     summary: Get ujian result detail
  *     tags: [Ujian/Result]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: ujianId
@@ -55,7 +55,7 @@ router.get('/:ujianId', authProtect, getUjianResult);
  *     summary: Get live leaderboard for ujian
  *     tags: [Ujian/Result]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: ujianId
@@ -80,7 +80,7 @@ router.get('/:ujianId/leaderboard', authProtect, getLiveLeaderboard);
  *     summary: Update peserta score (for live leaderboard)
  *     tags: [Ujian/Result]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: ujianId

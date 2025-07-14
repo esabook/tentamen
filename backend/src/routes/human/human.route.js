@@ -18,7 +18,7 @@ const router = express.Router();
  *     summary: Get all humans (with pagination)
  *     tags: [Human]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -44,7 +44,7 @@ const router = express.Router();
  *     summary: Create a new human
  *     tags: [Human]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -85,7 +85,7 @@ const router = express.Router();
  *     summary: Update human data by ID
  *     tags: [Human]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -128,7 +128,7 @@ const router = express.Router();
  *     summary: Delete human data by ID
  *     tags: [Human]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -152,7 +152,7 @@ const router = express.Router();
  *     summary: Archive human data (set archived=true) by ID
  *     tags: [Human]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

@@ -18,7 +18,7 @@ const router = express.Router();
  *     summary: Get all soal (questions) with pagination
  *     tags: [Soal]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -44,7 +44,7 @@ const router = express.Router();
  *     summary: Add a new soal (question)
  *     tags: [Soal]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: groupId
@@ -82,7 +82,7 @@ const router = express.Router();
  *     summary: Update soal (question) by ID
  *     tags: [Soal]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -123,7 +123,7 @@ const router = express.Router();
  *     summary: Archive soal (set archived=true) by ID
  *     tags: [Soal]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -147,7 +147,7 @@ const router = express.Router();
  *     summary: Delete soal by ID
  *     tags: [Soal]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

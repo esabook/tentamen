@@ -18,7 +18,7 @@ const router = express.Router();
  *     summary: Get all ujian (exams) with pagination
  *     tags: [Ujian]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -44,7 +44,7 @@ const router = express.Router();
  *     summary: Add a new ujian (exam)
  *     tags: [Ujian]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -82,7 +82,7 @@ const router = express.Router();
  *     summary: Update ujian data
  *     tags: [Ujian]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -126,7 +126,7 @@ const router = express.Router();
  *     summary: Delete ujian data
  *     tags: [Ujian]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -154,7 +154,7 @@ const router = express.Router();
  *     summary: Generate PIN ujian & start ujian (expired 50 menit)
  *     tags: [Ujian]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -178,7 +178,7 @@ const router = express.Router();
  *     summary: Get ujian detail by ID
  *     tags: [Ujian]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -202,7 +202,7 @@ const router = express.Router();
  *     summary: Get live leaderboard (top 10 peserta skor tertinggi) untuk ujian
  *     tags: [Ujian]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

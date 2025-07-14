@@ -18,7 +18,7 @@ const router = express.Router();
  *     summary: Get all permissions (with pagination)
  *     tags: [Permission]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -44,7 +44,7 @@ const router = express.Router();
  *     summary: Add a new permission
  *     tags: [Permission]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -70,7 +70,7 @@ const router = express.Router();
  *     summary: Update permission data
  *     tags: [Permission]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -104,7 +104,7 @@ const router = express.Router();
  *     summary: Delete permission data
  *     tags: [Permission]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:

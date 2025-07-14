@@ -18,7 +18,7 @@ const router = express.Router();
  *     summary: Get all soal tags (with pagination)
  *     tags: [SoalTag]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -44,7 +44,7 @@ const router = express.Router();
  *     summary: Add a new soal tag
  *     tags: [SoalTag]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -71,7 +71,7 @@ const router = express.Router();
  *     summary: Update soal tag data
  *     tags: [SoalTag]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -104,7 +104,7 @@ const router = express.Router();
  *     summary: Delete soal tag data
  *     tags: [SoalTag]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
