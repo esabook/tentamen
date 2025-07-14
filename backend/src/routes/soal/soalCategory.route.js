@@ -13,7 +13,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /soalCategory/all:
+ * /soal/category/all:
  *   get:
  *     summary: Get all soal categories (with pagination)
  *     tags: [SoalCategory]
@@ -39,7 +39,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /soalCategory/add:
+ * /soal/category/add:
  *   post:
  *     summary: Add a new soal category
  *     tags: [SoalCategory]
@@ -67,7 +67,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /soalCategory/update:
+ * /soal/category/update:
  *   post:
  *     summary: Update soal category data
  *     tags: [SoalCategory]
@@ -101,7 +101,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /soalCategory/delete:
+ * /soal/category/delete:
  *   post:
  *     summary: Delete soal category data
  *     tags: [SoalCategory]

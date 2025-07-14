@@ -13,7 +13,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /soalTag/all:
+ * /soal/tag/all:
  *   get:
  *     summary: Get all soal tags (with pagination)
  *     tags: [SoalTag]
@@ -39,7 +39,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /soalTag/add:
+ * /soal/tag/add:
  *   post:
  *     summary: Add a new soal tag
  *     tags: [SoalTag]
@@ -66,7 +66,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /soalTag/update:
+ * /soal/tag/update:
  *   post:
  *     summary: Update soal tag data
  *     tags: [SoalTag]
@@ -99,7 +99,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /soalTag/delete:
+ * /soal/tag/delete:
  *   post:
  *     summary: Delete soal tag data
  *     tags: [SoalTag]

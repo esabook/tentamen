@@ -15,16 +15,16 @@ export function NavFeature() {
   const parentUrl = '/home';
   const { pathname: pathName } = useLocation();
 
-  console.log("NavFeature");
+  console.log('NavFeature');
   return (
     <SidebarGroup>
       {sidebarMenu
         .filter((menu) => !menu.hidden)
         .map((menu) => {
-           const isHaveChildActive = menu.submenu.some((submenu) => {
-             const path = parentUrl + submenu.url;
-             return pathName === path;
-           });
+          const isHaveChildActive = menu.submenu.some((submenu) => {
+            const path = parentUrl + submenu.url;
+            return pathName === path;
+          });
 
           return (
             <Collapsible key={menu.title} asChild className="group/collapsible">
@@ -33,7 +33,9 @@ export function NavFeature() {
                   <SidebarMenuButton asChild isActive={isHaveChildActive}>
                     <span>
                       <DynamicIcon name={menu.icon} />
-                      <span className='group-data-[collapsible=icon]:hidden'>{menu.title}</span>
+                      <span className='opacity-0 transition-opacity group-data-[state="expanded"]:opacity-100 group-data-[state="expanded"]:duration-500 duration-0'>
+                        {menu.title}
+                      </span>
                       <DynamicIcon
                         name="chevron-down"
                         className="ml-auto transition-transform group-data-[collapsible=icon]:hidden group-data-[state=open]/collapsible:rotate-180"
